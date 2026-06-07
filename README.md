@@ -42,15 +42,42 @@
 
 ## 快速开始
 
+### 前置要求
+
+- Node.js >= 16
+- npm >= 8
+
+### 安装依赖
+
+> **重要**：首次运行前必须安装依赖。项目使用 npm workspaces 管理多包，在根目录执行一次 `npm install` 即可安装所有子项目（server、admin、game）的依赖以及根目录的 concurrently 等工具。
+
 ```bash
-# 安装依赖
+# 在项目根目录执行，安装所有依赖
 npm install
+```
 
-# 启动开发环境（同时启动服务端、后台、游戏）
+### 启动开发环境
+
+```bash
+# 同时启动服务端、管理后台、游戏客户端
 npm run dev
+```
 
-# 构建生产版本
+启动后访问：
+- 管理后台：http://localhost:3000/admin
+- 游戏页面：http://localhost:3000/game
+- 服务端 API：http://localhost:3000
+
+### 构建生产版本
+
+```bash
 npm run build
+```
+
+### 启动生产环境
+
+```bash
+npm start
 ```
 
 ## 技术栈

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const configRoutes = require('./routes/config');
 const activityRoutes = require('./routes/activity');
@@ -15,6 +16,7 @@ const { generateConfigJSON } = require('./services/configService');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const isDev = process.env.NODE_ENV !== 'production';
 
 app.use(cors());
 app.use(express.json());
@@ -26,8 +28,28 @@ if (!fs.existsSync(configDir)) {
 }
 
 app.use('/public', express.static(path.join(__dirname, '../public')));
-app.use('/game', express.static(path.join(__dirname, '../../game/dist')));
-app.use('/admin', express.static(path.join(__dirname, '../../admin/dist')));
+
+const adminDistPath = path.join(__dirname, '../../admin/dist');
+const gameDistPath = path.join(__dirname, '../../game/dist');
+
+if (isDev) {
+  app.use('/admin', createProxyMiddleware({
+    target: 'http://localhost:5173',
+    changeOrigin: true,
+    ws: true,
+    pathRewrite: { '^': '/admin' }
+  }));
+
+  app.use('/game', createProxyMiddleware({
+    target: 'http://localhost:5174',
+    changeOrigin: true,
+    ws: true,
+    pathRewrite: { '^': '/game' }
+  }));
+} else {
+  app.use('/game', express.static(gameDistPath));
+  app.use('/admin', express.static(adminDistPath));
+}
 
 app.use('/api/config', configRoutes);
 app.use('/api/activity', activityRoutes);
