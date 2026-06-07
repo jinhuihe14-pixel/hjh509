@@ -1,0 +1,452 @@
+{
+  "version": "20260606232005",
+  "generated_at": "2026-06-06T15:20:05.650Z",
+  "items": [
+    {
+      "id": 1,
+      "item_id": "wood",
+      "name": "木材",
+      "description": "木材道具",
+      "rarity": "common",
+      "icon": "🪵",
+      "type": "material",
+      "daily_limit": null,
+      "sort_order": 1,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 2,
+      "item_id": "stone",
+      "name": "石头",
+      "description": "石头道具",
+      "rarity": "common",
+      "icon": "🪨",
+      "type": "material",
+      "daily_limit": null,
+      "sort_order": 2,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 3,
+      "item_id": "iron",
+      "name": "铁矿",
+      "description": "铁矿道具",
+      "rarity": "uncommon",
+      "icon": "⛏️",
+      "type": "material",
+      "daily_limit": 1000,
+      "sort_order": 3,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 4,
+      "item_id": "gold",
+      "name": "金矿",
+      "description": "金矿道具",
+      "rarity": "rare",
+      "icon": "🥇",
+      "type": "material",
+      "daily_limit": 100,
+      "sort_order": 4,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 5,
+      "item_id": "plank",
+      "name": "木板",
+      "description": "木板道具",
+      "rarity": "common",
+      "icon": "🟫",
+      "type": "material",
+      "daily_limit": null,
+      "sort_order": 5,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 6,
+      "item_id": "brick",
+      "name": "石砖",
+      "description": "石砖道具",
+      "rarity": "common",
+      "icon": "🧱",
+      "type": "material",
+      "daily_limit": null,
+      "sort_order": 6,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 7,
+      "item_id": "sword",
+      "name": "铁剑",
+      "description": "铁剑道具",
+      "rarity": "uncommon",
+      "icon": "⚔️",
+      "type": "equipment",
+      "daily_limit": 50,
+      "sort_order": 7,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 8,
+      "item_id": "shield",
+      "name": "铁盾",
+      "description": "铁盾道具",
+      "rarity": "uncommon",
+      "icon": "🛡️",
+      "type": "equipment",
+      "daily_limit": 50,
+      "sort_order": 8,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 9,
+      "item_id": "crystal",
+      "name": "魔法水晶",
+      "description": "魔法水晶道具",
+      "rarity": "epic",
+      "icon": "💎",
+      "type": "material",
+      "daily_limit": 10,
+      "sort_order": 9,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 10,
+      "item_id": "dragon_sword",
+      "name": "屠龙剑",
+      "description": "屠龙剑道具",
+      "rarity": "legendary",
+      "icon": "🐉",
+      "type": "equipment",
+      "daily_limit": 1,
+      "sort_order": 10,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    }
+  ],
+  "recipes": [
+    {
+      "id": 1,
+      "recipe_id": "r_plank",
+      "name": "木板合成",
+      "materials": [
+        {
+          "item_id": "wood",
+          "count": 3
+        }
+      ],
+      "result_item_id": "plank",
+      "result_count": 1,
+      "success_rate": 100,
+      "unlock_level": 1,
+      "sort_order": 1,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 2,
+      "recipe_id": "r_brick",
+      "name": "石砖合成",
+      "materials": [
+        {
+          "item_id": "stone",
+          "count": 3
+        }
+      ],
+      "result_item_id": "brick",
+      "result_count": 1,
+      "success_rate": 100,
+      "unlock_level": 1,
+      "sort_order": 2,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 3,
+      "recipe_id": "r_sword",
+      "name": "铁剑合成",
+      "materials": [
+        {
+          "item_id": "iron",
+          "count": 5
+        },
+        {
+          "item_id": "plank",
+          "count": 2
+        }
+      ],
+      "result_item_id": "sword",
+      "result_count": 1,
+      "success_rate": 90,
+      "unlock_level": 3,
+      "sort_order": 3,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 4,
+      "recipe_id": "r_shield",
+      "name": "铁盾合成",
+      "materials": [
+        {
+          "item_id": "iron",
+          "count": 4
+        },
+        {
+          "item_id": "brick",
+          "count": 3
+        }
+      ],
+      "result_item_id": "shield",
+      "result_count": 1,
+      "success_rate": 85,
+      "unlock_level": 3,
+      "sort_order": 4,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 5,
+      "recipe_id": "r_crystal",
+      "name": "魔法水晶合成",
+      "materials": [
+        {
+          "item_id": "gold",
+          "count": 10
+        },
+        {
+          "item_id": "iron",
+          "count": 20
+        }
+      ],
+      "result_item_id": "crystal",
+      "result_count": 1,
+      "success_rate": 50,
+      "unlock_level": 5,
+      "sort_order": 5,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 6,
+      "recipe_id": "r_dragon_sword",
+      "name": "屠龙剑合成",
+      "materials": [
+        {
+          "item_id": "crystal",
+          "count": 5
+        },
+        {
+          "item_id": "sword",
+          "count": 3
+        },
+        {
+          "item_id": "gold",
+          "count": 50
+        }
+      ],
+      "result_item_id": "dragon_sword",
+      "result_count": 1,
+      "success_rate": 20,
+      "unlock_level": 10,
+      "sort_order": 6,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05",
+      "updated_at": "2026-06-06 15:20:05"
+    }
+  ],
+  "levels": [
+    {
+      "id": 1,
+      "level": 1,
+      "name": "新手村",
+      "exp_required": 0,
+      "rewards": [
+        {
+          "item_id": "wood",
+          "count": 10
+        }
+      ],
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 2,
+      "level": 2,
+      "name": "冒险者",
+      "exp_required": 100,
+      "rewards": [
+        {
+          "item_id": "stone",
+          "count": 10
+        }
+      ],
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 3,
+      "level": 3,
+      "name": "工匠学徒",
+      "exp_required": 300,
+      "rewards": [
+        {
+          "item_id": "iron",
+          "count": 5
+        }
+      ],
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 4,
+      "level": 4,
+      "name": "熟练工匠",
+      "exp_required": 600,
+      "rewards": [
+        {
+          "item_id": "gold",
+          "count": 3
+        }
+      ],
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 5,
+      "level": 5,
+      "name": "大师",
+      "exp_required": 1000,
+      "rewards": [
+        {
+          "item_id": "crystal",
+          "count": 1
+        }
+      ],
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    }
+  ],
+  "checkin_rewards": [
+    {
+      "id": 1,
+      "day": 1,
+      "rewards": [
+        {
+          "item_id": "wood",
+          "count": 20
+        }
+      ],
+      "is_special": null,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 2,
+      "day": 2,
+      "rewards": [
+        {
+          "item_id": "stone",
+          "count": 20
+        }
+      ],
+      "is_special": null,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 3,
+      "day": 3,
+      "rewards": [
+        {
+          "item_id": "iron",
+          "count": 10
+        }
+      ],
+      "is_special": 1,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 4,
+      "day": 4,
+      "rewards": [
+        {
+          "item_id": "plank",
+          "count": 15
+        }
+      ],
+      "is_special": null,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 5,
+      "day": 5,
+      "rewards": [
+        {
+          "item_id": "brick",
+          "count": 15
+        }
+      ],
+      "is_special": null,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 6,
+      "day": 6,
+      "rewards": [
+        {
+          "item_id": "gold",
+          "count": 5
+        }
+      ],
+      "is_special": null,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    },
+    {
+      "id": 7,
+      "day": 7,
+      "rewards": [
+        {
+          "item_id": "crystal",
+          "count": 1
+        },
+        {
+          "item_id": "gold",
+          "count": 10
+        }
+      ],
+      "is_special": 1,
+      "status": 1,
+      "created_at": "2026-06-06 15:20:05"
+    }
+  ],
+  "activities": []
+}

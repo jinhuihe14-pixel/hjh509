@@ -1,0 +1,25 @@
+{
+  "name": "synthesis-game-platform",
+  "version": "1.0.0",
+  "description": "合成放置小游戏全栈平台 - 配置化运营系统",
+  "private": true,
+  "workspaces": [
+    "server",
+    "admin",
+    "game"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:admin\" \"npm run dev:game\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "dev:game": "cd game && npm run dev",
+    "build": "npm run build:server && npm run build:admin && npm run build:game",
+    "build:server": "cd server && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:game": "cd game && npm run build",
+    "start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
