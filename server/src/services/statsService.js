@@ -1,7 +1,8 @@
 const { getDB } = require('../db');
 const dayjs = require('dayjs');
+const { logOperation } = require('./configService');
 
-function createActivity(data) {
+function createActivity(data, operator = 'admin') {
   const db = getDB();
   const result = db.prepare(`INSERT INTO activities
     (activity_id, name, type, start_time, end_time, config, status)
@@ -11,10 +12,11 @@ function createActivity(data) {
     JSON.stringify(data.config || {}),
     data.status !== undefined ? data.status : 0
   );
+  logOperation(operator, 'create_activity', 'activity', data.activity_id, JSON.stringify(data));
   return result;
 }
 
-function updateActivity(activityId, data) {
+function updateActivity(activityId, data, operator = 'admin') {
   const db = getDB();
   db.prepare(`UPDATE activities SET
     name = ?, type = ?, start_time = ?, end_time = ?, config = ?,
@@ -26,18 +28,21 @@ function updateActivity(activityId, data) {
     data.status !== undefined ? data.status : 0,
     activityId
   );
+  logOperation(operator, 'update_activity', 'activity', activityId, JSON.stringify(data));
 }
 
-function toggleActivity(activityId, status) {
+function toggleActivity(activityId, status, operator = 'admin') {
   const db = getDB();
   db.prepare('UPDATE activities SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE activity_id = ?').run(
     status ? 1 : 0, activityId
   );
+  logOperation(operator, 'toggle_activity', 'activity', activityId, JSON.stringify({ status: status ? 1 : 0 }));
 }
 
-function deleteActivity(activityId) {
+function deleteActivity(activityId, operator = 'admin') {
   const db = getDB();
   db.prepare('DELETE FROM activities WHERE activity_id = ?').run(activityId);
+  logOperation(operator, 'delete_activity', 'activity', activityId);
 }
 
 function getAllActivities(page = 1, pageSize = 20) {
@@ -135,7 +140,7 @@ function getItemProductionStats(days = 7) {
   return { items, stats: result };
 }
 
-function createGiftCode(data) {
+function createGiftCode(data, operator = 'admin') {
   const db = getDB();
   const result = db.prepare(`INSERT INTO gift_codes
     (code, rewards, max_uses, expire_time, status)
@@ -144,6 +149,7 @@ function createGiftCode(data) {
     data.max_uses || 1, data.expire_time || null,
     data.status !== undefined ? data.status : 1
   );
+  logOperation(operator, 'create_gift_code', 'gift_code', data.code, JSON.stringify(data));
   return result;
 }
 
@@ -159,9 +165,13 @@ function getAllGiftCodes(page = 1, pageSize = 20) {
   return { list, total, page, pageSize };
 }
 
-function deleteGiftCode(id) {
+function deleteGiftCode(id, operator = 'admin') {
   const db = getDB();
+  const codeInfo = db.prepare('SELECT code FROM gift_codes WHERE id = ?').get(id);
   db.prepare('DELETE FROM gift_codes WHERE id = ?').run(id);
+  if (codeInfo) {
+    logOperation(operator, 'delete_gift_code', 'gift_code', codeInfo.code);
+  }
 }
 
 function getAllPlayers(page = 1, pageSize = 20, keyword = '') {

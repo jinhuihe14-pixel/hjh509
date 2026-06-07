@@ -1,9 +1,9 @@
 {
-  "version": "20260607155925",
-  "generated_at": "2026-06-07T07:59:25.330Z",
+  "version": "20260607175638",
+  "generated_at": "2026-06-07T09:56:38.402Z",
   "items": [
     {
-      "id": 1,
+      "id": 13,
       "item_id": "wood",
       "name": "木材",
       "description": "木材道具",
@@ -13,11 +13,11 @@
       "daily_limit": null,
       "sort_order": 1,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 2,
+      "id": 14,
       "item_id": "stone",
       "name": "石头",
       "description": "石头道具",
@@ -27,11 +27,11 @@
       "daily_limit": null,
       "sort_order": 2,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 3,
+      "id": 15,
       "item_id": "iron",
       "name": "铁矿",
       "description": "铁矿道具",
@@ -41,11 +41,11 @@
       "daily_limit": 1000,
       "sort_order": 3,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 4,
+      "id": 16,
       "item_id": "gold",
       "name": "金矿",
       "description": "金矿道具",
@@ -55,11 +55,11 @@
       "daily_limit": 100,
       "sort_order": 4,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 5,
+      "id": 17,
       "item_id": "plank",
       "name": "木板",
       "description": "木板道具",
@@ -69,11 +69,11 @@
       "daily_limit": null,
       "sort_order": 5,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 6,
+      "id": 18,
       "item_id": "brick",
       "name": "石砖",
       "description": "石砖道具",
@@ -83,11 +83,11 @@
       "daily_limit": null,
       "sort_order": 6,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 7,
+      "id": 19,
       "item_id": "sword",
       "name": "铁剑",
       "description": "铁剑道具",
@@ -97,11 +97,11 @@
       "daily_limit": 50,
       "sort_order": 7,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 8,
+      "id": 20,
       "item_id": "shield",
       "name": "铁盾",
       "description": "铁盾道具",
@@ -111,11 +111,11 @@
       "daily_limit": 50,
       "sort_order": 8,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 9,
+      "id": 21,
       "item_id": "crystal",
       "name": "魔法水晶",
       "description": "魔法水晶道具",
@@ -125,11 +125,11 @@
       "daily_limit": 10,
       "sort_order": 9,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 10,
+      "id": 22,
       "item_id": "dragon_sword",
       "name": "屠龙剑",
       "description": "屠龙剑道具",
@@ -139,13 +139,13 @@
       "daily_limit": 1,
       "sort_order": 10,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     }
   ],
   "recipes": [
     {
-      "id": 1,
+      "id": 7,
       "recipe_id": "r_plank",
       "name": "木板合成",
       "materials": [
@@ -160,11 +160,11 @@
       "unlock_level": 1,
       "sort_order": 1,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 2,
+      "id": 8,
       "recipe_id": "r_brick",
       "name": "石砖合成",
       "materials": [
@@ -179,11 +179,11 @@
       "unlock_level": 1,
       "sort_order": 2,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 3,
+      "id": 9,
       "recipe_id": "r_sword",
       "name": "铁剑合成",
       "materials": [
@@ -202,11 +202,11 @@
       "unlock_level": 3,
       "sort_order": 3,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 4,
+      "id": 10,
       "recipe_id": "r_shield",
       "name": "铁盾合成",
       "materials": [
@@ -225,11 +225,11 @@
       "unlock_level": 3,
       "sort_order": 4,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 5,
+      "id": 11,
       "recipe_id": "r_crystal",
       "name": "魔法水晶合成",
       "materials": [
@@ -248,11 +248,11 @@
       "unlock_level": 5,
       "sort_order": 5,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     },
     {
-      "id": 6,
+      "id": 12,
       "recipe_id": "r_dragon_sword",
       "name": "屠龙剑合成",
       "materials": [
@@ -275,8 +275,8 @@
       "unlock_level": 10,
       "sort_order": 6,
       "status": 1,
-      "created_at": "2026-06-06 15:20:05",
-      "updated_at": "2026-06-06 15:20:05"
+      "created_at": "2026-06-07 09:55:44",
+      "updated_at": "2026-06-07 09:55:44"
     }
   ],
   "levels": [
@@ -448,5 +448,18 @@
       "created_at": "2026-06-06 15:20:05"
     }
   ],
-  "activities": []
+  "activities": [
+    {
+      "id": 2,
+      "activity_id": "ii",
+      "name": "看看",
+      "type": "limited",
+      "start_time": "2026-06-01 00:00:00",
+      "end_time": "2026-07-29 00:00:00",
+      "config": {},
+      "status": 1,
+      "created_at": "2026-06-07 09:56:38",
+      "updated_at": "2026-06-07 09:56:38"
+    }
+  ]
 }

@@ -305,6 +305,50 @@ async function redeemGiftCode(code) {
   }
 }
 
+async function refreshActivities() {
+  try {
+    const res = await gameApi.getActivities();
+    if (res.success && res.data) {
+      state.config.activities = res.data;
+      saveConfigCache(state.config);
+      return res.data;
+    }
+  } catch (e) {}
+  return state.config?.activities || [];
+}
+
+function getActivityRemainingTime(activity) {
+  if (!activity?.end_time) {
+    return { ended: false, forever: true, text: '长期有效' };
+  }
+
+  const now = Date.now();
+  const endTime = new Date(activity.end_time.replace(' ', 'T')).getTime();
+  const remaining = endTime - now;
+
+  if (remaining <= 0) {
+    return { ended: true, text: '已结束' };
+  }
+
+  const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+  let text = '';
+  if (days > 0) {
+    text = `${days}天${hours}时${minutes}分`;
+  } else if (hours > 0) {
+    text = `${hours}时${minutes}分${seconds}秒`;
+  } else if (minutes > 0) {
+    text = `${minutes}分${seconds}秒`;
+  } else {
+    text = `${seconds}秒`;
+  }
+
+  return { ended: false, forever: false, days, hours, minutes, seconds, text, remaining };
+}
+
 function getExpProgress() {
   if (!state.config?.levels || !state.player) return 0;
   const levels = state.config.levels.sort((a, b) => a.level - b.level);
@@ -338,7 +382,9 @@ export const gameState = {
   getIdlePending,
   collectIdleRewards,
   redeemGiftCode,
-  getExpProgress
+  getExpProgress,
+  refreshActivities,
+  getActivityRemainingTime
 };
 
 export default gameState;

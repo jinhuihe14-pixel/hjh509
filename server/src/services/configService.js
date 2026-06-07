@@ -14,7 +14,7 @@ function getItemById(itemId) {
   return db.prepare('SELECT * FROM items WHERE item_id = ?').get(itemId);
 }
 
-function createItem(data) {
+function createItem(data, operator = 'system') {
   const db = getDB();
   const result = db.prepare(`INSERT INTO items 
     (item_id, name, description, rarity, icon, type, daily_limit, sort_order, status) 
@@ -23,11 +23,11 @@ function createItem(data) {
     data.icon || '', data.type || 'material', data.daily_limit || 0,
     data.sort_order || 0, data.status !== undefined ? data.status : 1
   );
-  logOperation('system', 'create_item', 'item', data.item_id, JSON.stringify(data));
+  logOperation(operator, 'create_item', 'item', data.item_id, JSON.stringify(data));
   return result;
 }
 
-function updateItem(itemId, data) {
+function updateItem(itemId, data, operator = 'system') {
   const db = getDB();
   db.prepare(`UPDATE items SET 
     name = ?, description = ?, rarity = ?, icon = ?, type = ?, 
@@ -37,13 +37,13 @@ function updateItem(itemId, data) {
     data.icon || '', data.type || 'material', data.daily_limit || 0,
     data.sort_order || 0, data.status !== undefined ? data.status : 1, itemId
   );
-  logOperation('system', 'update_item', 'item', itemId, JSON.stringify(data));
+  logOperation(operator, 'update_item', 'item', itemId, JSON.stringify(data));
 }
 
-function deleteItem(itemId) {
+function deleteItem(itemId, operator = 'system') {
   const db = getDB();
   db.prepare('UPDATE items SET status = 0, updated_at = CURRENT_TIMESTAMP WHERE item_id = ?').run(itemId);
-  logOperation('system', 'delete_item', 'item', itemId);
+  logOperation(operator, 'delete_item', 'item', itemId);
 }
 
 function getAllRecipes() {
@@ -51,7 +51,7 @@ function getAllRecipes() {
   return db.prepare('SELECT * FROM recipes WHERE status = 1 ORDER BY sort_order ASC, id ASC').all();
 }
 
-function createRecipe(data) {
+function createRecipe(data, operator = 'system') {
   const db = getDB();
   const result = db.prepare(`INSERT INTO recipes
     (recipe_id, name, materials, result_item_id, result_count, success_rate, unlock_level, sort_order, status)
@@ -61,11 +61,11 @@ function createRecipe(data) {
     data.success_rate || 100, data.unlock_level || 1,
     data.sort_order || 0, data.status !== undefined ? data.status : 1
   );
-  logOperation('system', 'create_recipe', 'recipe', data.recipe_id, JSON.stringify(data));
+  logOperation(operator, 'create_recipe', 'recipe', data.recipe_id, JSON.stringify(data));
   return result;
 }
 
-function updateRecipe(recipeId, data) {
+function updateRecipe(recipeId, data, operator = 'system') {
   const db = getDB();
   db.prepare(`UPDATE recipes SET
     name = ?, materials = ?, result_item_id = ?, result_count = ?,
@@ -76,13 +76,13 @@ function updateRecipe(recipeId, data) {
     data.unlock_level || 1, data.sort_order || 0,
     data.status !== undefined ? data.status : 1, recipeId
   );
-  logOperation('system', 'update_recipe', 'recipe', recipeId, JSON.stringify(data));
+  logOperation(operator, 'update_recipe', 'recipe', recipeId, JSON.stringify(data));
 }
 
-function deleteRecipe(recipeId) {
+function deleteRecipe(recipeId, operator = 'system') {
   const db = getDB();
   db.prepare('UPDATE recipes SET status = 0, updated_at = CURRENT_TIMESTAMP WHERE recipe_id = ?').run(recipeId);
-  logOperation('system', 'delete_recipe', 'recipe', recipeId);
+  logOperation(operator, 'delete_recipe', 'recipe', recipeId);
 }
 
 function getAllLevels() {
@@ -90,7 +90,7 @@ function getAllLevels() {
   return db.prepare('SELECT * FROM levels WHERE status = 1 ORDER BY level ASC').all();
 }
 
-function saveLevel(data) {
+function saveLevel(data, operator = 'system') {
   const db = getDB();
   const exists = db.prepare('SELECT level FROM levels WHERE level = ?').get(data.level);
   if (exists) {
@@ -104,13 +104,13 @@ function saveLevel(data) {
       JSON.stringify(data.rewards || []), data.status !== undefined ? data.status : 1
     );
   }
-  logOperation('system', 'save_level', 'level', String(data.level));
+  logOperation(operator, 'save_level', 'level', String(data.level));
 }
 
-function deleteLevel(level) {
+function deleteLevel(level, operator = 'system') {
   const db = getDB();
   db.prepare('UPDATE levels SET status = 0 WHERE level = ?').run(level);
-  logOperation('system', 'delete_level', 'level', String(level));
+  logOperation(operator, 'delete_level', 'level', String(level));
 }
 
 function getAllCheckinRewards() {
@@ -118,7 +118,7 @@ function getAllCheckinRewards() {
   return db.prepare('SELECT * FROM checkin_rewards WHERE status = 1 ORDER BY day ASC').all();
 }
 
-function saveCheckinReward(data) {
+function saveCheckinReward(data, operator = 'system') {
   const db = getDB();
   const exists = db.prepare('SELECT day FROM checkin_rewards WHERE day = ?').get(data.day);
   if (exists) {
@@ -132,13 +132,13 @@ function saveCheckinReward(data) {
       data.status !== undefined ? data.status : 1
     );
   }
-  logOperation('system', 'save_checkin', 'checkin', String(data.day));
+  logOperation(operator, 'save_checkin', 'checkin', String(data.day));
 }
 
-function deleteCheckinReward(day) {
+function deleteCheckinReward(day, operator = 'system') {
   const db = getDB();
   db.prepare('UPDATE checkin_rewards SET status = 0 WHERE day = ?').run(day);
-  logOperation('system', 'delete_checkin', 'checkin', String(day));
+  logOperation(operator, 'delete_checkin', 'checkin', String(day));
 }
 
 function generateConfigJSON() {

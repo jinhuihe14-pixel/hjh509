@@ -269,7 +269,7 @@ function redeemGiftCode(playerId, code) {
   return { success: true, rewards };
 }
 
-function sendGiftsToPlayer(playerId, rewards, reason = '运营补偿') {
+function sendGiftsToPlayer(playerId, rewards, reason = '运营补偿', operator = 'admin') {
   const db = getDB();
   const player = db.prepare('SELECT * FROM players WHERE player_id = ?').get(playerId);
   if (!player) throw new Error('玩家不存在');
@@ -285,7 +285,7 @@ function sendGiftsToPlayer(playerId, rewards, reason = '运营补偿') {
     JSON.stringify(playerItems), playerId
   );
 
-  logOperation('admin', 'send_gift', 'player', playerId, JSON.stringify({ rewards, reason }));
+  logOperation(operator, 'send_gift', 'player', playerId, JSON.stringify({ rewards, reason }));
 
   return { success: true };
 }

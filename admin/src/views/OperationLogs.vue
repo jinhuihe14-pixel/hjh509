@@ -89,7 +89,11 @@ const actionMap = {
   rollback_config: '回滚配置',
   send_gift: '发送礼包',
   create_activity: '创建活动',
-  update_activity: '更新活动'
+  update_activity: '更新活动',
+  toggle_activity: '切换活动状态',
+  delete_activity: '删除活动',
+  create_gift_code: '创建礼包码',
+  delete_gift_code: '删除礼包码'
 }
 
 const actionTypeMap = {
@@ -100,7 +104,13 @@ const actionTypeMap = {
   update_recipe: 'primary',
   delete_recipe: 'danger',
   rollback_config: 'warning',
-  send_gift: 'success'
+  send_gift: 'success',
+  create_activity: 'success',
+  update_activity: 'primary',
+  toggle_activity: 'warning',
+  delete_activity: 'danger',
+  create_gift_code: 'success',
+  delete_gift_code: 'danger'
 }
 
 const targetTypeMap = {
@@ -110,7 +120,8 @@ const targetTypeMap = {
   checkin: '签到',
   player: '玩家',
   activity: '活动',
-  config_version: '配置版本'
+  config_version: '配置版本',
+  gift_code: '礼包码'
 }
 
 const formattedDetail = computed(() => {

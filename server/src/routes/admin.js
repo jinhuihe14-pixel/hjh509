@@ -55,7 +55,7 @@ router.post('/players/send-gift', auth, (req, res) => {
     if (!player_id || !rewards || !Array.isArray(rewards)) {
       return res.status(400).json({ success: false, message: '参数不完整' });
     }
-    const result = sendGiftsToPlayer(player_id, rewards, reason);
+    const result = sendGiftsToPlayer(player_id, rewards, reason, req.admin.username);
     res.json({ success: true, data: result });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -79,7 +79,7 @@ router.post('/gift-codes', auth, (req, res) => {
     if (!data.code || !data.rewards) {
       return res.status(400).json({ success: false, message: '参数不完整' });
     }
-    createGiftCode(data);
+    createGiftCode(data, req.admin.username);
     res.json({ success: true, message: '创建成功' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
@@ -88,7 +88,7 @@ router.post('/gift-codes', auth, (req, res) => {
 
 router.delete('/gift-codes/:id', auth, (req, res) => {
   try {
-    deleteGiftCode(parseInt(req.params.id));
+    deleteGiftCode(parseInt(req.params.id), req.admin.username);
     res.json({ success: true, message: '删除成功' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });

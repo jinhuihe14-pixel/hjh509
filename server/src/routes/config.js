@@ -6,7 +6,7 @@ const {
   getAllLevels, saveLevel, deleteLevel,
   getAllCheckinRewards, saveCheckinReward, deleteCheckinReward,
   generateConfigJSON, getConfigVersions, rollbackConfig,
-  getOperationLogs
+  getOperationLogs, getActiveActivities
 } = require('../services/configService');
 
 const { auth } = require('../middleware/auth');
@@ -42,7 +42,7 @@ router.post('/items', auth, (req, res) => {
     if (['legendary', 'epic'].includes(data.rarity) && (data.daily_limit === 0 || data.daily_limit > 100)) {
       return res.status(400).json({ success: false, message: '稀有/史诗道具单日产出上限必须设置且不超过100' });
     }
-    createItem(data);
+    createItem(data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '创建成功' });
   } catch (err) {
@@ -59,7 +59,7 @@ router.put('/items/:itemId', auth, (req, res) => {
     if (['legendary', 'epic'].includes(data.rarity) && (data.daily_limit === 0 || data.daily_limit > 100)) {
       return res.status(400).json({ success: false, message: '稀有/史诗道具单日产出上限必须设置且不超过100' });
     }
-    updateItem(req.params.itemId, data);
+    updateItem(req.params.itemId, data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '更新成功' });
   } catch (err) {
@@ -69,7 +69,7 @@ router.put('/items/:itemId', auth, (req, res) => {
 
 router.delete('/items/:itemId', auth, (req, res) => {
   try {
-    deleteItem(req.params.itemId);
+    deleteItem(req.params.itemId, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '删除成功' });
   } catch (err) {
@@ -95,7 +95,7 @@ router.post('/recipes', auth, (req, res) => {
     if (data.success_rate < 0 || data.success_rate > 100) {
       return res.status(400).json({ success: false, message: '成功率必须在 0-100 之间' });
     }
-    createRecipe(data);
+    createRecipe(data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '创建成功' });
   } catch (err) {
@@ -109,7 +109,7 @@ router.put('/recipes/:recipeId', auth, (req, res) => {
     if (data.success_rate < 0 || data.success_rate > 100) {
       return res.status(400).json({ success: false, message: '成功率必须在 0-100 之间' });
     }
-    updateRecipe(req.params.recipeId, data);
+    updateRecipe(req.params.recipeId, data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '更新成功' });
   } catch (err) {
@@ -119,7 +119,7 @@ router.put('/recipes/:recipeId', auth, (req, res) => {
 
 router.delete('/recipes/:recipeId', auth, (req, res) => {
   try {
-    deleteRecipe(req.params.recipeId);
+    deleteRecipe(req.params.recipeId, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '删除成功' });
   } catch (err) {
@@ -142,7 +142,7 @@ router.post('/levels', auth, (req, res) => {
     if (!data.level || data.level < 1) {
       return res.status(400).json({ success: false, message: '等级参数无效' });
     }
-    saveLevel(data);
+    saveLevel(data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '保存成功' });
   } catch (err) {
@@ -152,7 +152,7 @@ router.post('/levels', auth, (req, res) => {
 
 router.delete('/levels/:level', auth, (req, res) => {
   try {
-    deleteLevel(parseInt(req.params.level));
+    deleteLevel(parseInt(req.params.level), req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '删除成功' });
   } catch (err) {
@@ -175,7 +175,7 @@ router.post('/checkin', auth, (req, res) => {
     if (!data.day || data.day < 1) {
       return res.status(400).json({ success: false, message: '天数参数无效' });
     }
-    saveCheckinReward(data);
+    saveCheckinReward(data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '保存成功' });
   } catch (err) {
@@ -185,9 +185,18 @@ router.post('/checkin', auth, (req, res) => {
 
 router.delete('/checkin/:day', auth, (req, res) => {
   try {
-    deleteCheckinReward(parseInt(req.params.day));
+    deleteCheckinReward(parseInt(req.params.day), req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '删除成功' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
+router.get('/activities', (req, res) => {
+  try {
+    const activities = getActiveActivities().map(a => ({ ...a, config: JSON.parse(a.config) }));
+    res.json({ success: true, data: activities });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }

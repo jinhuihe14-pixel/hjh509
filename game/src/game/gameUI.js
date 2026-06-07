@@ -281,12 +281,16 @@ function renderActivitiesTab() {
 
   return `
     <div class="section-title">限时活动</div>
-    <div>
-      ${activities.length > 0 ? activities.map(act => `
-        <div class="activity-item">
+    <div id="activitiesList">
+      ${activities.length > 0 ? activities.map((act, idx) => `
+        <div class="activity-item" data-activity-idx="${idx}">
           <div class="activity-header">
             <span class="activity-name">${act.name}</span>
             <span class="activity-type">${act.type === 'festival' ? '节日' : '限时'}</span>
+          </div>
+          <div class="activity-countdown" data-activity-end="${act.end_time || ''}">
+            <span class="countdown-label">剩余：</span>
+            <span class="countdown-value">--</span>
           </div>
           <div class="activity-time">
             ${act.start_time || ''} ~ ${act.end_time || '长期有效'}
@@ -355,6 +359,53 @@ function switchTab(tabId) {
     if (target) target.classList.add('active');
     bindEvents();
   }
+
+  if (tabId === 'activities') {
+    gameState.refreshActivities().then(() => {
+      if (currentTab === 'activities') {
+        refreshUI();
+      }
+    });
+    startCountdownTimer();
+  } else {
+    stopCountdownTimer();
+  }
+}
+
+let countdownTimer = null;
+
+function startCountdownTimer() {
+  if (countdownTimer) return;
+  updateCountdowns();
+  countdownTimer = setInterval(updateCountdowns, 1000);
+}
+
+function stopCountdownTimer() {
+  if (countdownTimer) {
+    clearInterval(countdownTimer);
+    countdownTimer = null;
+  }
+}
+
+function updateCountdowns() {
+  const activities = gameState.state.config?.activities || [];
+  const countdownValues = document.querySelectorAll('.countdown-value');
+
+  countdownValues.forEach((el, idx) => {
+    const activity = activities[idx];
+    if (!activity) return;
+
+    const timeInfo = gameState.getActivityRemainingTime(activity);
+    el.textContent = timeInfo.text;
+
+    if (timeInfo.ended) {
+      el.style.color = '#909399';
+    } else if (timeInfo.forever) {
+      el.style.color = '#67c23a';
+    } else {
+      el.style.color = '#e6a23c';
+    }
+  });
 }
 
 function bindEvents() {
@@ -527,6 +578,13 @@ function refreshUI() {
 
   bindTabEvents();
   bindEvents();
+
+  if (currentTab === 'activities') {
+    updateCountdowns();
+    if (!countdownTimer) {
+      startCountdownTimer();
+    }
+  }
 }
 
 function updateIdleDisplay() {

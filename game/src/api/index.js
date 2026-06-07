@@ -75,6 +75,10 @@ export const gameApi = {
     });
   },
 
+  getActivities() {
+    return request('/config/activities');
+  },
+
   getIdleProduction(playerId) {
     return request(`/game/idle/production?player_id=${playerId}`);
   }

@@ -642,6 +642,28 @@ html, body {
   margin-bottom: 8px;
 }
 
+.activity-countdown {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  background: linear-gradient(135deg, #fff7e6 0%, #ffe7cc 100%);
+  border-radius: 8px;
+}
+
+.countdown-label {
+  color: #e6a23c;
+  margin-right: 6px;
+  font-weight: 500;
+}
+
+.countdown-value {
+  color: #e6a23c;
+  font-weight: 600;
+  font-family: monospace;
+}
+
 .activity-desc {
   font-size: 13px;
   color: #606266;

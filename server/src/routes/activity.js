@@ -34,7 +34,7 @@ router.post('/', auth, (req, res) => {
     if (!data.activity_id || !data.name) {
       return res.status(400).json({ success: false, message: '活动ID和名称必填' });
     }
-    createActivity(data);
+    createActivity(data, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '创建成功' });
   } catch (err) {
@@ -44,7 +44,7 @@ router.post('/', auth, (req, res) => {
 
 router.put('/:activityId', auth, (req, res) => {
   try {
-    updateActivity(req.params.activityId, req.body);
+    updateActivity(req.params.activityId, req.body, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '更新成功' });
   } catch (err) {
@@ -55,7 +55,7 @@ router.put('/:activityId', auth, (req, res) => {
 router.post('/:activityId/toggle', auth, (req, res) => {
   try {
     const { status } = req.body;
-    toggleActivity(req.params.activityId, status);
+    toggleActivity(req.params.activityId, status, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: status ? '活动已开启' : '活动已关闭' });
   } catch (err) {
@@ -65,7 +65,7 @@ router.post('/:activityId/toggle', auth, (req, res) => {
 
 router.delete('/:activityId', auth, (req, res) => {
   try {
-    deleteActivity(req.params.activityId);
+    deleteActivity(req.params.activityId, req.admin.username);
     generateConfigJSON();
     res.json({ success: true, message: '删除成功' });
   } catch (err) {
